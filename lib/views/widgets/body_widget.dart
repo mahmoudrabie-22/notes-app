@@ -12,13 +12,10 @@ class BodyWidget extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 30),
-          CustomAppBar(),
+          CustomAppBar(icon: Icons.search, title: 'Notes'),
           NotesListView(),
-
-      
         ],
       ),
     );
   }
 }
-
