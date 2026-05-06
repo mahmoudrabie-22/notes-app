@@ -14,6 +14,9 @@ class AddNoteButton extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.0),
         child: BlocConsumer<AddNoteCubit, AddNoteState>(
+          builder: (context,state){
+            return AbsorbPointer(absorbing: state is AddNoteLoading,child: const SingleChildScrollView(child: AddNoteForm()));
+          },
           listener: (context, state) {
             if (state is AddNoteFailure) {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -39,12 +42,8 @@ class AddNoteButton extends StatelessWidget {
               Navigator.pop(context);
             }
           },
-          builder: (context, state) {
-            return ModalProgressHUD(
-              inAsyncCall: (state is AddNoteLoading),
-              child: SingleChildScrollView(child: AddNoteForm()),
-            );
-          },
+
+          
         ),
       ),
     );
