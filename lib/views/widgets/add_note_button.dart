@@ -9,22 +9,40 @@ class AddNoteButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.0),
-      child: SingleChildScrollView(
+    return BlocProvider(
+      create: (context) => AddNoteCubit(),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.0),
         child: BlocConsumer<AddNoteCubit, AddNoteState>(
           listener: (context, state) {
             if (state is AddNoteFailure) {
-              print('failed');
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    state.errMsg,
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  backgroundColor: Colors.red,
+                ),
+              );
             }
             if (state is AddNoteSuccess) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text(
+                    'Note added successfully',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  backgroundColor: Colors.green,
+                ),
+              );
               Navigator.pop(context);
             }
           },
           builder: (context, state) {
             return ModalProgressHUD(
               inAsyncCall: (state is AddNoteLoading),
-              child: AddNoteForm(),
+              child: SingleChildScrollView(child: AddNoteForm()),
             );
           },
         ),

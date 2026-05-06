@@ -18,5 +18,5 @@ class AddNoteCubit extends Cubit<AddNoteState> {
     } catch (e) {
       emit(AddNoteFailure(e.toString()));
     }
-  }
+  } 
 }
