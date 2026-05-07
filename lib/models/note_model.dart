@@ -18,4 +18,13 @@ class NoteModel extends HiveObject {
     required this.date,
     required this.color,
   });
+
+  factory NoteModel.fromJson(NoteModel json) {
+    return NoteModel(
+      title: json.title,
+      subTitle: json.subTitle,
+      date: json.date,
+      color: json.color,
+    );
+  }
 }

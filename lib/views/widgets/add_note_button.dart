@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:notes_app/cubits/add%20note/add_note_cubit.dart';
 import 'package:notes_app/views/widgets/add_note_form.dart';
 
@@ -12,10 +11,17 @@ class AddNoteButton extends StatelessWidget {
     return BlocProvider(
       create: (context) => AddNoteCubit(),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        padding: EdgeInsets.only(
+          left: 16.0,
+          right: 16,
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
         child: BlocConsumer<AddNoteCubit, AddNoteState>(
-          builder: (context,state){
-            return AbsorbPointer(absorbing: state is AddNoteLoading,child: const SingleChildScrollView(child: AddNoteForm()));
+          builder: (context, state) {
+            return AbsorbPointer(
+              absorbing: state is AddNoteLoading,
+              child: const SingleChildScrollView(child: AddNoteForm()),
+            );
           },
           listener: (context, state) {
             if (state is AddNoteFailure) {
@@ -42,8 +48,6 @@ class AddNoteButton extends StatelessWidget {
               Navigator.pop(context);
             }
           },
-
-          
         ),
       ),
     );
