@@ -25,7 +25,7 @@ class _BodyWidgetState extends State<BodyWidget> {
       child: Column(
         children: [
           SizedBox(height: 30),
-          CustomAppBar(icon: Icons.search, title: 'Notes'),
+          CustomAppBar(icon: Icons.search, title: 'Notes',onTap: (){},),
           NotesListView(),
         ],
       ),

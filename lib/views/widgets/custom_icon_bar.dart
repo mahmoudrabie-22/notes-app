@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 class CustomIconBar extends StatelessWidget {
   const CustomIconBar({
     super.key,
-    required this.icon
+    required this.icon,
+    required this.onTap
   });
   final IconData icon;
+  final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,7 +20,7 @@ class CustomIconBar extends StatelessWidget {
     
       child: Center(
         child: IconButton(
-          onPressed: () {},
+          onPressed: onTap,
           icon: Icon(icon),
           iconSize: 28,
         ),
