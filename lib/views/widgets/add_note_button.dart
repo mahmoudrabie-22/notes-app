@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubits/add%20note/add_note_cubit.dart';
+import 'package:notes_app/cubits/notes%20cubit/notes_cubit_cubit.dart';
 import 'package:notes_app/views/widgets/add_note_form.dart';
 
-class AddNoteButton extends StatelessWidget {
-  const AddNoteButton({super.key});
+class AddNoteButtomSheet extends StatelessWidget {
+  const AddNoteButtomSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +46,7 @@ class AddNoteButton extends StatelessWidget {
                   backgroundColor: Colors.green,
                 ),
               );
+              BlocProvider.of<NotesCubit>(context).readAllNotes();
               Navigator.pop(context);
             }
           },
