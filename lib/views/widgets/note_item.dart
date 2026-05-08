@@ -3,7 +3,7 @@ import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/views/edit_note_view.dart';
 
 class NoteItem extends StatelessWidget {
-  const NoteItem({super.key,required this.item});
+  const NoteItem({super.key, required this.item});
   final NoteModel item;
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,9 @@ class NoteItem extends StatelessWidget {
             ListTile(
               trailing: IconButton(
                 iconSize: 30,
-                onPressed: () {},
+                onPressed: () {
+                  item.delete();
+                },
                 icon: Icon(Icons.delete),
                 color: const Color.fromARGB(255, 0, 0, 0),
               ),
